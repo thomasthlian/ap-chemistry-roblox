@@ -6,6 +6,9 @@ local Chatbox = ScreenGui.Chatbox
 
 local ChatboxController = { }
 
+local ShortPause = ",;"
+local LongPause = ".?!-"
+
 ChatboxController.Test = "The solution shifts to the right as more reactants are being added; however, there aren't enough ammonia ions to overpower the light blue precipitate formed by the complex of copper II ions and water."
 
 function ChatboxController.Show()
@@ -27,9 +30,10 @@ function ChatboxController.Say(text)
     for _, v in text:split("") do
         ChatboxText.Text = ChatboxText.Text .. v
         TextSound:Play()
-
-        if v == "," or v == ";" then task.wait(0.3) end
-        if v == "." then
+        local ShortPause = ",;"
+        local LongPause = ".?!-"
+        if string.match(ShortPause, v) then task.wait(0.3) end
+        if string.match(LongPause, v) then
             task.wait(0.5)
             if #ChatboxText.Text > 150 then
                 task.wait(5)
