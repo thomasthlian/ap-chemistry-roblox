@@ -1,6 +1,4 @@
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local tweenService = game:GetService("TweenService")
-local PathfindingService = game:GetService("PathfindingService")
 local StartCutscene = { }
 
 local Pathfinding = require(game:GetService("ReplicatedStorage").Common.Pathfinding)
@@ -21,11 +19,11 @@ function StartCutscene.Play()
         door:SetPrimaryPartCFrame(cf.Value)
     end)
 
-    local tween = tweenService:Create(cf, tweenInfo, { Value = finalDoor:GetPrimaryPartCFrame()})
+    local tween = tweenService:Create(cf, tweenInfo, { Value = finalDoor:GetPrimaryPartCFrame() })
     tween:Play()
     tween.Completed:Wait()
 
-    Pathfinding.FollowPath(cutscene.Waypoints, workspace.Models["Walter White"])
+    Pathfinding.FollowPath(cutscene.Waypoints, workspace.Models["Walter Underwear"]):await()
 end
 
 return StartCutscene

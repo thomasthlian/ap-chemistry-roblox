@@ -4,26 +4,30 @@ local player = Players.LocalPlayer
 
 local Client = player.PlayerScripts.Client
 local Cameras = workspace.Cameras
+local Camera = workspace.CurrentCamera
 
 local ChatboxController = require(Client.ChatboxController)
 local ChemicalController = require(Client.ChemicalController)
 local CameraController = require(Client.CameraController)
 local CutsceneController = require(Client.CutsceneController)
-local PlayerModule = require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"))
+local ChemicalSettings = require(ReplicatedStorage.Common.ChemicalSettings)
 
-local Controls = PlayerModule:GetControls()
-Controls:Disable()
-
-local Walter = ReplicatedStorage.Models["Walter White"]:Clone()
+local StarterGui = game:GetService("StarterGui")
+StarterGui:SetCore("TopbarEnabled", false)
+local StartGui = player.PlayerGui:WaitForChild("StartGui")
+StartGui.Enabled = true
+local StartButton = StartGui.Play.Button
+local Walter = ReplicatedStorage.Models["Walter Underwear"]:Clone()
+ReplicatedStorage.Models["Door"]:Clone().Parent = workspace.Models
 Walter.Parent = workspace.Models
 
 CameraController.Start()
-task.wait(2) -- Change to OnClick Button
+StartButton.MouseButton1Click:Wait()
+StartButton.Parent.Parent:Destroy()
+
 CutsceneController.PlayCutscene("StartCutscene")
-CameraController.MoveTo(Cameras["Begun Camera"], 2)
+CutsceneController.PlayCutscene("OutsideCutscene")
+CutsceneController.PlayCutscene("InsideCutscene")
 
-local text = "Jesse, er-" .. player.DisplayName .. " it's time to cook... You need some chemistry help? Le Châtelier's Principle? Alright " .. player.DisplayName .. ", let's head over to the lab."
-
-ChatboxController.Say(text)
-
-ChemicalController.ChangeColor(Color3.fromRGB(0,0,255))
+player.PlayerGui.ChemicalGui.Enabled = true
+ChemicalController.ResetChemicals()
