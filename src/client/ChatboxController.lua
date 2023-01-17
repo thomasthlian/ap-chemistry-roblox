@@ -13,7 +13,7 @@ local ChatboxController = { }
 
 local ShortPause = ",;"
 local LongPause = ".?!-"
-local ChatSpeed = 100
+local ChatSpeed = 1
 
 ChatboxController.Test = "The solution shifts to the right as more reactants are being added; however, there aren't enough ammonia ions to overpower the light blue precipitate formed by the complex of copper II ions and water."
 

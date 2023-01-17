@@ -42,20 +42,34 @@ local ChemicalSettings = {
                 ["Color"] = Color3.fromRGB(239, 73, 57), -- Pink
                 ["Hypothesis"] = "Removing heat is like removing a reactant. That results in more reactants being created, turning the solution turning pink.",
                 ["Dialogue"] = "Removing heat shifts the equilibrium to the left. The reaction shifts to counteract the change in temperature, attempting to heat itself up by creating more reactants.",
-            }
+            },
         },
     },
     [2] = {
         ["Name"] = "Copper (II) Sulfate and Ammonia",
         ["ButtonName"] = "Copper (II) Sulfate and Ammonia",
         ["Equation"] = "Cu2+  +  4 NH3  ⇌  [Cu(NH3)4]2+",
-        ["Initial Color"] = Color3.fromRGB(0, 160, 206),
+        ["Initial Color"] = Color3.fromRGB(0, 70, 206),
         ["Buttons"] = {
-            ["Add Hydrochloric Acid (HCl)"] = {
-                ["Color"] = Color3.fromRGB(37, 150, 190), -- Light Blue
+            {
+                ["Name"] = "Add Hydrochloric Acid (HCl)",
+                ["Color"] = Color3.fromRGB(46, 176, 223), -- Light Blue
                 ["Hypothesis"] = "Adding Hydrochloric acid will remove some ammonia which will cause [Cu(NH3)4]2+ to decompose into copper and nitrate, resulting in a lighter blue color.",
                 ["Dialogue"] = "The HCl reacts with ammonia to create an ammonium ion which cannot form a complex with copper II. \"Removing\" some ammonia shifts the equilibrium to the left, removing the darker blue colored ion and creating the lighter blue ion at the same time."
-            }
+            },
+            {
+                ["Name"] = "Add Ammonia (NH3)",
+                ["Color"] = Color3.fromRGB(16, 5, 115), -- Dark Blue
+                ["Hypothesis"] = "Adding more ammonia to the solution with the light blue copper precipitate will create a dark blue solution.",
+                ["Dialogue"] = "As long as there are more copper II ions for the ammonia to react with, adding more ammonia will remove the precipitate and create a darker blue solution. Adding more ammonia past a dark blue solution makes the solution slightly clearer because ammonia is clear and will not react.",
+            },
+            {
+                ["Name"] = "Add Copper (II) Sulfate",
+                ["Color"] = Color3.fromRGB(46, 176, 223), -- Light Blue
+                ["PrecipitateColor"] = Color3.fromRGB(18, 127, 204) -- Light Blue
+                ["Hypothesis"] = "The solution should turn to a lighter blue as more light blue ions are being introduced. More dark blue ions are also being created, but since there are more Copper II than there are ammonia to form complexes with, it should turn lighter blue.",
+                ["Dialogue"] = "The solution shifts to the right as more reactants are being added; however, there aren't enough ammonia ions to overpower the light blue precipitate formed by the complex of copper II ions and water.",
+            },
         },
     },
     [3] = {
@@ -64,12 +78,14 @@ local ChemicalSettings = {
         ["Equation"] = "Heat  +  [Cu(H2O)6]2+  +  4 Cl-  ⇌  [CuCl4]2-  +  6 H2O",
         ["Initial Color"] = Color3.fromRGB(25, 124, 128),
         ["Buttons"] = {
-            ["Add Hydrochloric Acid (HCl)"] = {
+            {
+                ["ButtonName"] = "Add Hydrochloric Acid (HCl)",
                 ["Color"] = Color3.fromRGB(0, 145, 57), -- Green
                 ["Hypothesis"] = "Adding HCl adds Chlorine ions and creates hydronium ions from water. This creates more green ions as more reactants are being added. Therefore, the solution will turn green.",
                 ["Dialogue"] = "The solution changes from light blue to green. It also had a yellow phase which is an intermediate step to establish equilibrium, though we weren't able to observe it here. As more reactants have been added and products have been used (water to create hydronium) equilibrium shifts to the right, resulting in more green ions."
             },
-            ["Add Water"] = {
+            {
+                ["ButtonName"] = "Add Water",
                 ["Color"] = Color3.fromRGB(16, 149, 194), -- Light Blue
                 ["Hypothesis"] = "Adding water will add more products and create more reactants. The light blue ion is a reactant, so it should turn light blue.",
                 ["Dialogue"] = "As long as there are more copper II ions for the ammonia to react with, adding more ammonia will remove the precipitate and create a darker blue solution. Adding more ammonia past a dark blue solution makes the solution slightly clearer because ammonia is clear and will not react.",
@@ -92,19 +108,43 @@ local ChemicalSettings = {
         ["Name"] = "Iron (III) Nitrate and Potassium Thiocyanate",
         ["ButtonName"] = "Iron (III) Nitrate and Potassium Thiocyanate",
         ["Equation"] = "Fe3+  +  SCN-  ⇌  FeSCN2+  +  Heat",
-        ["Initial Color"] = Color3.fromRGB(62, 10, 13),
+        ["Initial Color"] = Color3.fromRGB(70, 10, 13),
         ["Buttons"] = {
             {
                 ["ButtonName"] = "Add Iron (III) Chloride",
                 ["Color"] = Color3.fromRGB(113, 33, 5),
                 ["Hypothesis"] = "The original solution of KSCN was clear, but adding Iron (III) Nitrate made it more opaque and red. Adding more Iron seems like it will make the solution more yellow because Iron III is yellow, but also make it more red because FeSCN is red. There should be more atoms which reflect the yellow color.",
-                ["Dialogue"] = "The solution turns more opaque and red. Fe (III) is a pale yellow solution, SCN is colorless in water, and FeSCN2+ is dark red. Adding more Iron (III) will shift the reaction to the right and initially turn the solution more yellow, using up iron and thiocyanate, making the solution more red after reaching equilibrium. Though there is more iron III, because red is a stronger color, it is closer to red. The solution does become more pale.",
+                ["Dialogue"] = "The solution turns more opaque and red. Fe (III) is a pale yellow solution, SCN is colorless in water, and FeSCN2+ is dark red. Adding more Iron (III) will shift the reaction to the right and initially turn the solution more yellow, using up iron and thiocyanate, making the solution more red after reaching equilibrium. Though there is more iron III, because red is a stronger color, it is closer to red. Theoretically, there should be more yellow. The solution does turn more pale.",
             },
             {
                 ["ButtonName"] = "Add Sodium Phosphate (Na2HPO4)",
                 ["Color"] = Color3.fromRGB(192, 176, 118),
                 ["Hypothesis"] = "The hydrogen phosphate will use Iron III, so the solution should turn more clear as more SCN is being created. It should also turn more yellow as FeNCS is being used.",
                 ["Dialogue"] = "The solution turns yellow. The hydrogen phosphate will react with the iron III to create a new equilibrium which uses up Iron III. Since the iron III is being used, it will initially appear less yellow; however, FeSCN is changing to Iron III and SCN to counteract this change. Though both colored ions are decreasing, iron III decreases by less because it is part of another equilibrium. Red is also a harsher color, so decreasing it and yellow results in the solution turning more yellow."
+            },
+            {
+                ["ButtonName"] = "Add Potassium Thiocyanate (KSCN)",
+                ["Color"] = Color3.fromRGB(52, 29, 20),
+                ["Hypothesis"] = "Since the original solution of KSCN in distilled water was clear, it will become a little less opaque when adding KSCN. It also produces more FeSCN, making the solution more red.",
+                ["Dialogue"] = "The solution turns a darker red. Initially, the solution becomes slightly more translucent, but as it reaches equilibrium, the change in opaqueness is negligible. As more potassium thiocyanate is being added, the equilibrium is being shifted to the right, resulting in a darker red color.",
+            },
+            {
+                ["ButtonName"] = "Add Potassium Nitrate (KNO3)",
+                ["Color"] = Color3.fromRGB(220, 204, 72),
+                ["Hypothesis"] = "Potassium will take away some SCN and cause more yellow ions.",
+                ["Dialogue"] = "Potassium ions are in equilibrium with SCN, adding more potassium will result in removing SCN. This shifts the equilibrium to the left and uses more dark red ions while producing more yellow ions.",
+            },
+            {
+                ["ButtonName"] = "Add Heat",
+                ["Color"] = Color3.fromRGB(217, 155, 82),
+                ["Hypothesis"] = "The solution should become more yellow because heat is a product on the right side. If we remove heat, more FeSCN will be used to counteract this change.",
+                ["Dialogue"] = "Heating up the solution is equivalent to adding a product. It shifts the equilibrium to the left and produces more yellow ions to counteract the increase in heat.",
+            },
+            {
+                ["ButtonName"] = "Remove Heat",
+                ["Color"] = Color3.fromRGB(70, 26, 17),
+                ["Hypothesis"] = "Theoretically, the solution should become more red because heat is a product on the right side. If we remove heat, more FeSCN will be created to counteract this change.",
+                ["Dialogue"] = "Cooling down the solution is equivalent to removing a product. It shifts the equilibrium to the right and produces more red ions to counteract the decrease in heat.",
             }
         },
     },

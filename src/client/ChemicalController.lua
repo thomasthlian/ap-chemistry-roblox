@@ -182,14 +182,18 @@ function ChemicalController.ShowReaction(reactionInfo)
     end
 
     local tweenInfo = TweenInfo.new(tweeningDuration, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, false, 0)
-    local goal = {AnchorPoint = Vector2.new(1, 0)}
+    local goal = { AnchorPoint = Vector2.new(1, 0) }
     local tween
     for _, v in ChemicalButtons:GetChildren() do
         tween = tweenService:Create(v, tweenInfo, goal)
         tween:Play()
     end
 
-    ChatboxController.Say("This is what I think will happen. " .. Hypothesis, player.DisplayName):await()
+    local intros = { "This is what I think will happen. ", "I believe the following will happen." }
+
+    local intro = intros[math.random(1, #intros)]
+
+    ChatboxController.Say(intro .. Hypothesis, player.DisplayName):await()
     CameraController.MoveTo(workspace.Cameras["Close-up Camera"], 1):await()
 
     if Precipitate then
