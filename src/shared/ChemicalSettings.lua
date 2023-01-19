@@ -52,21 +52,21 @@ local ChemicalSettings = {
         ["Initial Color"] = Color3.fromRGB(0, 70, 206),
         ["Buttons"] = {
             {
-                ["Name"] = "Add Hydrochloric Acid (HCl)",
+                ["ButtonName"] = "Add Hydrochloric Acid (HCl)",
                 ["Color"] = Color3.fromRGB(46, 176, 223), -- Light Blue
-                ["Hypothesis"] = "Adding Hydrochloric acid will remove some ammonia which will cause [Cu(NH3)4]2+ to decompose into copper and nitrate, resulting in a lighter blue color.",
+                ["Hypothesis"] = "Adding Hydrochloric acid will remove some ammonia which will cause some product to decompose into copper and nitrate, resulting in a lighter blue color.",
                 ["Dialogue"] = "The HCl reacts with ammonia to create an ammonium ion which cannot form a complex with copper II. \"Removing\" some ammonia shifts the equilibrium to the left, removing the darker blue colored ion and creating the lighter blue ion at the same time."
             },
             {
-                ["Name"] = "Add Ammonia (NH3)",
+                ["ButtonName"] = "Add Ammonia (NH3)",
                 ["Color"] = Color3.fromRGB(16, 5, 115), -- Dark Blue
                 ["Hypothesis"] = "Adding more ammonia to the solution with the light blue copper precipitate will create a dark blue solution.",
                 ["Dialogue"] = "As long as there are more copper II ions for the ammonia to react with, adding more ammonia will remove the precipitate and create a darker blue solution. Adding more ammonia past a dark blue solution makes the solution slightly clearer because ammonia is clear and will not react.",
             },
             {
-                ["Name"] = "Add Copper (II) Sulfate",
+                ["ButtonName"] = "Add Copper (II) Sulfate",
                 ["Color"] = Color3.fromRGB(46, 176, 223), -- Light Blue
-                ["PrecipitateColor"] = Color3.fromRGB(18, 127, 204) -- Light Blue
+                ["PrecipitateColor"] = Color3.fromRGB(18, 127, 204), -- Light Blue
                 ["Hypothesis"] = "The solution should turn to a lighter blue as more light blue ions are being introduced. More dark blue ions are also being created, but since there are more Copper II than there are ammonia to form complexes with, it should turn lighter blue.",
                 ["Dialogue"] = "The solution shifts to the right as more reactants are being added; however, there aren't enough ammonia ions to overpower the light blue precipitate formed by the complex of copper II ions and water.",
             },
@@ -104,6 +104,32 @@ local ChemicalSettings = {
             },
         },
     },
+    [4] = {
+        ["Name"] = "Bromothymol Blue and Water",
+        ["ButtonName"] = "BTB and Water",
+        ["Equation"] = "Heat + HBTB ⇌ H+ + BTB-",
+        ["Initial Color"] = Color3.fromRGB(25, 88, 0),
+        ["Buttons"] = {
+            {
+                ["ButtonName"] = "Add Hydrochloric Acid (HCl)",
+                ["Color"] = Color3.fromRGB(219, 154, 13),
+                ["Hypothesis"] = "Adding Hydrochloric acid should shift the reaction to favor reactants because the hydrogen ion will dissociate from the acid. Having more hydrogen ions will increase the backwards reaction rate, resulting in more reactants.",
+                ["Dialogue"] = "The reaction turns orange. HBTB is blue, which means that in the new equilibrium, there is more HBTB than BTB-. This is because the backward reaction rate which creates HBTB increases.",
+            },
+            {
+                ["ButtonName"] = "Add Salt (NaCl)",
+                ["PrecipitateColor"] = Color3.fromRGB(143, 143, 143),
+                ["Hypothesis"] = "Adding NaCl should result in no change. Neither the Sodium nor the Chlorine ions should bond with either the Hydrogen ions or Bromothymol blue. Thus, adding salt should not affect the equilibrium equation.",
+                ["Dialogue"] = "There is no visible change. Just as in an acid-base neutralization, the salt has no effect on the equilibrium of the acids and bases.",
+            },
+            {
+                ["ButtonName"] = "Add Sodium Hydroxide (NaOH)",
+                ["Color"] = Color3.fromRGB(25, 40, 120),
+                ["Hypothesis"] = "Adding Sodium Hydroxide should shift the reaction to favor products because the hydrogen ion will dissociate from HBTB and attach to Sodium Hydroxide. Having less hydrogen ions will increase the forwards reaction rate, resulting in more products.",
+                ["Dialogue"] = "The reaction turns blue. BTB- is blue, which means that in the new equilibrium, there is more BTB- than HBTB. This means the forward reaction rate which creates BTB increases."
+            }
+        }
+    },
     [5] = {
         ["Name"] = "Iron (III) Nitrate and Potassium Thiocyanate",
         ["ButtonName"] = "Iron (III) Nitrate and Potassium Thiocyanate",
@@ -114,17 +140,17 @@ local ChemicalSettings = {
                 ["ButtonName"] = "Add Iron (III) Chloride",
                 ["Color"] = Color3.fromRGB(113, 33, 5),
                 ["Hypothesis"] = "The original solution of KSCN was clear, but adding Iron (III) Nitrate made it more opaque and red. Adding more Iron seems like it will make the solution more yellow because Iron III is yellow, but also make it more red because FeSCN is red. There should be more atoms which reflect the yellow color.",
-                ["Dialogue"] = "The solution turns more opaque and red. Fe (III) is a pale yellow solution, SCN is colorless in water, and FeSCN2+ is dark red. Adding more Iron (III) will shift the reaction to the right and initially turn the solution more yellow, using up iron and thiocyanate, making the solution more red after reaching equilibrium. Though there is more iron III, because red is a stronger color, it is closer to red. Theoretically, there should be more yellow. The solution does turn more pale.",
+                ["Dialogue"] = "The solution turns more opaque and red. Iron (III) is a pale yellow solution, SCN is colorless in water, and FeSCN2+ is dark red. Adding more Iron (III) will shift the reaction to the right and initially turn the solution more yellow, using up iron and thiocyanate, making the solution more red after reaching equilibrium. Though there is more iron III, because red is a stronger color, it is closer to red. Theoretically, there should be more yellow. The solution does turn more pale.",
             },
             {
                 ["ButtonName"] = "Add Sodium Phosphate (Na2HPO4)",
                 ["Color"] = Color3.fromRGB(192, 176, 118),
-                ["Hypothesis"] = "The hydrogen phosphate will use Iron III, so the solution should turn more clear as more SCN is being created. It should also turn more yellow as FeNCS is being used.",
+                ["Hypothesis"] = "The hydrogen phosphate will use Iron (III), so the solution should turn more clear as more SCN is being created. It should also turn more yellow as FeNCS is being used.",
                 ["Dialogue"] = "The solution turns yellow. The hydrogen phosphate will react with the iron III to create a new equilibrium which uses up Iron III. Since the iron III is being used, it will initially appear less yellow; however, FeSCN is changing to Iron III and SCN to counteract this change. Though both colored ions are decreasing, iron III decreases by less because it is part of another equilibrium. Red is also a harsher color, so decreasing it and yellow results in the solution turning more yellow."
             },
             {
                 ["ButtonName"] = "Add Potassium Thiocyanate (KSCN)",
-                ["Color"] = Color3.fromRGB(52, 29, 20),
+                ["Color"] = Color3.fromRGB(68, 20, 20),
                 ["Hypothesis"] = "Since the original solution of KSCN in distilled water was clear, it will become a little less opaque when adding KSCN. It also produces more FeSCN, making the solution more red.",
                 ["Dialogue"] = "The solution turns a darker red. Initially, the solution becomes slightly more translucent, but as it reaches equilibrium, the change in opaqueness is negligible. As more potassium thiocyanate is being added, the equilibrium is being shifted to the right, resulting in a darker red color.",
             },

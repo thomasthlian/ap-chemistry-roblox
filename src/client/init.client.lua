@@ -21,9 +21,22 @@ local Walter = ReplicatedStorage.Models["Walter Underwear"]:Clone()
 ReplicatedStorage.Models["Door"]:Clone().Parent = workspace.Models
 Walter.Parent = workspace.Models
 
+local Songs = ReplicatedStorage.Songs
+local intro = Songs.Intro
+intro:Play()
+
 CameraController.Start()
 StartButton.MouseButton1Click:Wait()
 StartButton.Parent.Parent:Destroy()
+
+for _ = 1, intro.Volume * 1000 do
+    intro.Volume -= 0.001
+    task.wait()
+end
+
+intro:Stop()
+
+Songs.Regular:Play()
 
 CutsceneController.PlayCutscene("StartCutscene")
 CutsceneController.PlayCutscene("OutsideCutscene")

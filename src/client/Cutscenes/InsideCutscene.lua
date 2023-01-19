@@ -35,11 +35,9 @@ function InsideCutscene.Play()
     Pathfinding.FollowPath(Inside["Behind Bench"], Walter):await()
 
     CameraController.MoveTo(workspace.Cameras["Chemical Camera"], 4):await()
-    ChatboxController.Say("Before we begin, I would like to explain what Le Châtelier's Principle even is."):await()
-    ChatboxController.Say("Le Châtelier's principle states that if a system in equilibrium is subjected to a change such as concentration, temperature, or pressure, the system will shift in such a way as to counteract the change and reestablish equilibrium. In other words, a system at equilibrium will try to maintain balance by opposing any change that is imposed upon it. This principle is often used to predict the behavior of chemical reactions and physical processes."):await()
+    ChatboxController.Say("Before we begin, I would like to explain what Le Châtelier's Principle is."):await()
+    ChatboxController.Say("Le Châtelier's principle states that if a system in equilibrium is subjected to a change such as concentration, temperature, or pressure, the system will shift in such a way as to counteract the change and re-establish equilibrium. In other words, a system at equilibrium will try to maintain balance by opposing any change that is imposed upon it. This principle is often used to predict the behavior of chemical reactions and physical processes."):await()
     ChatboxController.Say("Now that we got that out of the way, we can show this principle in action in several equilibriums. For each chemical, you will first tell me what you think will happen, then I will explain."):await()
-    player.PlayerGui.ChemicalGui.Enabled = true
-    ChemicalController.ResetChemicals()
 end
 
 return InsideCutscene

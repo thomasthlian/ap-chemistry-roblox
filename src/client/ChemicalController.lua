@@ -176,11 +176,6 @@ function ChemicalController.ShowReaction(reactionInfo)
     local Precipitate = reactionInfo["PrecipitateColor"]
     if not (Hypothesis and Dialogue) then return end
 
-    if Chemicals.Color == Color then
-        ChatboxController.Say("The chemicals are already shifted towards that end of the reaction, nothing will happen. We shouldn't waste chemicals."):await()
-        return
-    end
-
     local tweenInfo = TweenInfo.new(tweeningDuration, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, false, 0)
     local goal = { AnchorPoint = Vector2.new(1, 0) }
     local tween
@@ -193,18 +188,36 @@ function ChemicalController.ShowReaction(reactionInfo)
 
     local intro = intros[math.random(1, #intros)]
 
-    ChatboxController.Say(intro .. Hypothesis, player.DisplayName):await()
-    CameraController.MoveTo(workspace.Cameras["Close-up Camera"], 1):await()
+    if Color then
+        if Chemicals.Color == Color then
+            ChatboxController.Say("The chemicals are already shifted towards that end of the reaction, nothing will happen. We shouldn't waste chemicals."):await()
+            goal = {AnchorPoint = Vector2.new(0, 0)}
+            for _, v in ChemicalButtons:GetChildren() do
+                if v.Text.Text == "" then continue end
+                tween = tweenService:Create(v, tweenInfo, goal)
+                tween:Play()
+            end
+            tween.Completed:Wait()
+            return
+        end
 
-    if Precipitate then
-        print("Adding Precipitate")
-        ChemicalController.AddPrecipitate(Precipitate)
+        ChatboxController.Say(intro .. Hypothesis, player.DisplayName):await()
+        CameraController.MoveTo(workspace.Cameras["Close-up Camera"], 1):await()
+
+        if Precipitate then
+            ChemicalController.AddPrecipitate(Precipitate)
+        end
+
+        ChemicalController.ChangeColor(Color, 4)
+    else
+        if Precipitate then
+            ChemicalController.AddPrecipitate(Precipitate)
+        end
     end
 
-    ChemicalController.ChangeColor(Color, 4)
     ChatboxController.Say(Dialogue):await()
 
-    goal = {AnchorPoint = Vector2.new(0, 0)}
+    goal = { AnchorPoint = Vector2.new(0, 0) }
     for _, v in ChemicalButtons:GetChildren() do
         if v.Text.Text == "" then continue end
         tween = tweenService:Create(v, tweenInfo, goal)

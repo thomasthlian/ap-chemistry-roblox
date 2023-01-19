@@ -10,10 +10,9 @@ local ScreenGui = player.PlayerGui:WaitForChild("ScreenGui")
 local Chatbox = ScreenGui.Chatbox
 
 local ChatboxController = { }
-
-local ShortPause = ",;"
-local LongPause = ".?!-"
 local ChatSpeed = 1
+
+ChatboxController.Talking = false
 
 ChatboxController.Test = "The solution shifts to the right as more reactants are being added; however, there aren't enough ammonia ions to overpower the light blue precipitate formed by the complex of copper II ions and water."
 
@@ -30,6 +29,19 @@ end
 function ChatboxController.Say(text, speaker)
     return Promise.new(function(resolve)
 
+        if not Client:FindFirstChild("IsTalking") then
+            local bool = Instance.new("BoolValue")
+            bool.Name = "IsTalking"
+            bool.Value = false
+            bool.Parent = Client
+        end
+
+        if Client.IsTalking.Value then
+            return
+        end
+
+        Client.IsTalking.Value = true
+
         if not speaker then
             speaker = "Walt"
         end
@@ -43,18 +55,20 @@ function ChatboxController.Say(text, speaker)
         ChatboxText.Text = ""
 
         for _, v in text:split("") do
+
             ChatboxText.Text = ChatboxText.Text .. v
             TextSound:Play()
-            if string.match(ShortPause, v) then task.wait(0.2 / ChatSpeed) end
-            if string.match(LongPause, v) then
-                task.wait(0.3 / ChatSpeed)
+            if v == "," or v == ";" then task.wait(0.1 / ChatSpeed) end
+            if v == "." or v == "?" or v == "!" then
+                task.wait(0.2 / ChatSpeed)
             end
-            task.wait(0.03 / ChatSpeed)
+            task.wait(0.02 / ChatSpeed)
         end
 
         local connection
 
         connection = mouse.Button1Down:Connect(function()
+            Client.IsTalking.Value = false
             ChatboxController.Hide()
             Chatbox.Continue.Visible = false
             connection:Disconnect()
